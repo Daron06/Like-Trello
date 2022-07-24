@@ -1,0 +1,10 @@
+.root {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  grid-template-columns: 260px 1fr;
+  header {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}

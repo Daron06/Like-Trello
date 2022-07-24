@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { Messages } from './pages/Messages';
+import { Boards } from './pages/Boards';
+import { Calendar } from './pages/Calendar';
+import { MainLayout } from './layouts/MainLayout';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="App"
+      style={{ backgroundImage: `url(${require('./assets/img/kosmos-big.jpg')})` }}
+    >
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/boards" element={<Boards />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/b/:id" element={<Boards />} />
+        </Routes>
+      </MainLayout>
     </div>
   );
 }

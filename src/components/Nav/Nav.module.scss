@@ -1,0 +1,95 @@
+.root {
+  border-right: 1px solid gray;
+  // background-color: #000;
+  backdrop-filter: blur(6px);
+  svg {
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    fill: #fff;
+    color: #fff;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    // background: linear-gradient(180deg,#0000003d 0,#0000003d 48px,#0000 80px,#0000);
+    li {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      &:hover {
+        background-color: hsla(0, 0%, 100%, 0.16);
+      }
+      a {
+        &.active,
+        &:active {
+          background-color: hsla(0, 0%, 100%, 0.3);
+        }
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        color: white;
+        width: 100%;
+      }
+    }
+  }
+
+  .logoWrapper {
+    padding-right: 10px;
+    display: inline-flex;
+  }
+
+  .titleWrapper {
+    display: flex;
+    // justify-content: space-between;
+
+    align-items: center;
+    margin-top: 16px;
+    padding: 0 12px;
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      flex: 1;
+      letter-spacing: -0.003em;
+      line-height: 24px;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    button {
+      background-color: transparent;
+      padding: 3px 4px;
+      margin: 0 6px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      span {
+        display: inline-block;
+        line-height: 1;
+        margin-top: 1px;
+      }
+      transition: background-color 0.1s linear;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+}
+
+.bgcImage {
+  display: inline-block;
+  background-size: cover;
+  border-radius: 2px;
+  position: relative;
+  opacity: 0.7;
+  width: 24px;
+  height: 20px;
+  margin-right: 10px;
+}

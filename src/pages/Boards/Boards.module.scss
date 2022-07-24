@@ -1,0 +1,9 @@
+.root {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  height: fit-content;
+  > div {
+    height: fit-content;
+  }
+}
