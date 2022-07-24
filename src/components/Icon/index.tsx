@@ -34,7 +34,6 @@ export const Icon: React.FC<IconProps> = ({
   onClick,
 }): React.ReactElement | null => {
   const IconComponent = icons[type];
-  console.log(IconComponent);
   if (!IconComponent) {
     return null;
   }

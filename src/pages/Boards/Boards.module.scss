@@ -2,7 +2,8 @@
   margin-top: 10px;
   margin-left: 10px;
   display: flex;
-  height: fit-content;
+  grid-column-gap: 10px;
+  // position: relative;
   > div {
     height: fit-content;
   }

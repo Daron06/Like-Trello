@@ -1,18 +1,18 @@
 import React from 'react';
-import { Icon } from '../../../Icon';
+import { Icon, IconName } from '../../../Icon';
 import styles from './BoardButton.module.scss';
 
 interface BoardButtonProps {
   text: string;
-  Img?: React.ReactNode;
+  imgType?: IconName;
 }
 
-export const BoardButton: React.FC<BoardButtonProps> = ({ text, Img }) => {
+export const BoardButton: React.FC<BoardButtonProps> = ({ text, imgType }) => {
   return (
     <div className={styles.root}>
       <a>
-        {<Icon type="board-plus" />}
-        {text}
+        {imgType && <Icon type={imgType} />}
+        <span>{text}</span>
       </a>
     </div>
   );

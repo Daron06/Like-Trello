@@ -1,0 +1,43 @@
+.root {
+  width: 272px;
+  background-color: #ebecf0;
+  color: #172b4d;
+  border-radius: 3px;
+  padding: 5px;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  padding: 10px 8px;
+  p {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+  }
+}
+
+.button {
+  &:hover {
+    background-color: #091e4221;
+  }
+}
+textarea {
+  background: #0000;
+  border-radius: 3px;
+  box-shadow: none;
+  font-weight: 600;
+  height: 20px;
+  margin: -4px 0;
+  max-height: 256px;
+  min-height: 20px;
+  padding: 4px 8px;
+  resize: none;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  outline: none;
+  display: block;
+  line-height: 20px;
+  border: none;
+}

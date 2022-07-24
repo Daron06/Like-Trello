@@ -27,7 +27,7 @@ export const Nav: React.FC = () => {
     <nav className={styles.root}>
       <ul>
         {navRoutes.map(route => (
-          <li>
+          <li key={route.title}>
             <NavLink
               className={({ isActive }) => (isActive ? styles.active : undefined)}
               to={route.path}
@@ -46,7 +46,7 @@ export const Nav: React.FC = () => {
           </button>
         </div>
         {boardRoutes.map(route => (
-          <li>
+          <li key={route.title}>
             <NavLink
               className={({ isActive }) => (isActive ? styles.active : undefined)}
               to={route.path}
