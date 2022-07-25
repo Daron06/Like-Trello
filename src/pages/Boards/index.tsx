@@ -12,11 +12,11 @@ const boardColumn = [
 export const Boards: React.FC = () => {
   const boardRef = React.useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
-    boardRef?.current?.addEventListener('click', (event) => {
-      // console.log('board', event.clientX, event.clientY);
-    });
-  });
+  // React.useEffect(() => {
+  //   boardRef?.current?.addEventListener('mouseenter', (event) => {
+  //     console.log('board', event, event.currentTarget, event.relatedTarget);
+  //   });
+  // });
 
   let params = useParams();
   console.log(params);
