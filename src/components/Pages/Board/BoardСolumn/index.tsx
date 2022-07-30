@@ -2,7 +2,7 @@ import React from 'react';
 import { BoardButton } from '../BoardButton';
 import { BoardCard } from '../BoardCard';
 import styles from './BoardСolumn.module.scss';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 export const BoardСolumn: React.FC<{
   title: string;
@@ -11,23 +11,25 @@ export const BoardСolumn: React.FC<{
   cards: any;
 }> = ({ title, id, index, cards }) => {
   return (
-    <Draggable draggableId={id} index={index}>
+    <Draggable key={id} draggableId={id} index={index}>
       {(provided: any) => (
-        <div
-          ref={provided.innerRef}
-          className={styles.root}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
+        <div className={styles.root} ref={provided.innerRef} {...provided.draggableProps}>
           <div>
-            <div className={styles.header} id={String(id)}>
+            <div className={styles.header} id={String(id)} {...provided.dragHandleProps}>
               <p>{<textarea placeholder={title} />}</p>
             </div>
-            <div className={styles.content}>
-              {cards.map((el: any, index: number) => (
-                <BoardCard title={el.title} index={index} key={el.id} id={el.id} />
-              ))}
-            </div>
+            <Droppable droppableId={id} type={`droppableSubItem`}>
+              {(provided: any) => (
+                <div ref={provided.innerRef}>
+                  <div className={styles.content}>
+                    {cards.map((el: any, i: number) => {
+                      return <BoardCard title={el.content} index={i} key={el.id} id={el.id} />;
+                    })}
+                  </div>
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
           </div>
           <div className={styles.button}>
             <BoardButton imgType="board-plus" text="Добавить карточку" />
