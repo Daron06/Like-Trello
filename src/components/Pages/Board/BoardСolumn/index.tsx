@@ -2,47 +2,38 @@ import React from 'react';
 import { BoardButton } from '../BoardButton';
 import { BoardCard } from '../BoardCard';
 import styles from './BoardСolumn.module.scss';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 export const BoardСolumn: React.FC<{
   title: string;
   id: string;
-  positionEl: any;
-  cardRef: any;
-}> = ({ title, positionEl, id }) => {
+  index: number;
+  cards: any;
+}> = ({ title, id, index, cards }) => {
   return (
-    <>
-      {positionEl.abs && (
+    <Draggable draggableId={id} index={index}>
+      {(provided: any) => (
         <div
-          style={{
-            width: 272,
-            height: positionEl.heightEl,
-            backgroundColor: '#172b4d',
-          }}
-        ></div>
+          ref={provided.innerRef}
+          className={styles.root}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <div>
+            <div className={styles.header} id={String(id)}>
+              <p>{<textarea placeholder={title} />}</p>
+            </div>
+            <div className={styles.content}>
+              {cards.map((el: any, index: number) => (
+                <BoardCard title={el.title} index={index} key={el.id} id={el.id} />
+              ))}
+            </div>
+          </div>
+          <div className={styles.button}>
+            <BoardButton imgType="board-plus" text="Добавить карточку" />
+          </div>
+        </div>
       )}
-      <div
-        style={{
-          top: positionEl.top,
-          left: positionEl.left,
-          position: positionEl.abs ? 'absolute' : 'relative',
-          transform: positionEl.abs ? 'rotate(2deg)' : 'none',
-          zIndex: positionEl.zI,
-        }}
-        className={styles.root}
-      >
-        <div>
-          <div className={styles.header} id={String(id)}>
-            <p>{<textarea placeholder={title} />}</p>
-          </div>
-          <div className={styles.content}>
-            <BoardCard />
-            <BoardCard />
-          </div>
-        </div>
-        <div className={styles.button}>
-          <BoardButton imgType="board-plus" text="Добавить карточку" />
-        </div>
-      </div>
-    </>
+    </Draggable>
   );
 };
