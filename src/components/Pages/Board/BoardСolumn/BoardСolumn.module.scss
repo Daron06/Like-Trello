@@ -9,6 +9,7 @@
 
 .header {
   padding: 10px 8px;
+  position: relative;
   p {
     margin: 0;
     padding: 0;
@@ -22,12 +23,12 @@
   }
 }
 
-textarea {
+.textarea {
   background: #0000;
   border-radius: 3px;
   box-shadow: none;
   font-weight: 600;
-  height: 20px;
+  height: 28px;
   margin: -4px 0;
   max-height: 256px;
   min-height: 20px;
@@ -39,4 +40,18 @@ textarea {
   display: block;
   line-height: 20px;
   border: none;
+  width: 100%;
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px #0079bf;
+  }
+}
+
+.editingTarget {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
 }
