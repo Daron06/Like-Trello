@@ -19,6 +19,7 @@ function App() {
           <Route path="/boards" element={<Boards />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/b/:id" element={<Boards />} />
+          <Route path="/c/:id" element={<Boards />} />
         </Routes>
       </MainLayout>
     </div>

@@ -5,11 +5,12 @@ import styles from './BoardButton.module.scss';
 interface BoardButtonProps {
   text: string;
   imgType?: IconName;
+  onClick: () => void;
 }
 
-export const BoardButton: React.FC<BoardButtonProps> = ({ text, imgType }) => {
+export const BoardButton: React.FC<BoardButtonProps> = ({ text, imgType, onClick }) => {
   return (
-    <div className={styles.root}>
+    <div className={styles.root} onClick={onClick}>
       <a>
         {imgType && <Icon type={imgType} />}
         <span>{text}</span>

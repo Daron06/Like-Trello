@@ -1,27 +1,94 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface BoardState {
-  value: number;
-}
+import { nanoid } from 'nanoid';
+import {
+  BoardState,
+  ChangeTitleCardProps,
+  DeleteCardProps,
+  ChangeTitleСolumnProps,
+  AddCardProps,
+} from './types';
+
+const itemsFromBackend = [
+  { id: nanoid(), content: 'First task' },
+  { id: nanoid(), content: 'Second task' },
+  { id: nanoid(), content: 'Third task' },
+  { id: nanoid(), content: 'Fourth task' },
+  { id: nanoid(), content: 'Fifth task' },
+];
+
+const columnsFromBackend = [
+  {
+    name: 'Requested',
+    items: itemsFromBackend,
+    id: nanoid(),
+  },
+  {
+    name: 'To do',
+    items: [],
+    id: nanoid(),
+  },
+  {
+    name: 'In Progress',
+    items: [],
+    id: nanoid(),
+  },
+  {
+    name: 'Done',
+    items: [],
+    id: nanoid(),
+  },
+];
 
 const initialState: BoardState = {
-  value: 0,
+  board: columnsFromBackend,
 };
 
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    getBoard: (state) => {
-      state.value += 1;
+    reorderBoard: (state, action: PayloadAction<BoardState['board']>) => {
+      state.board = action.payload;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    deleteСolumn: (state, action: PayloadAction<string>) => {
+      state.board = state.board.filter((el) => el.id !== action.payload);
+    },
+    deleteCard: (state, action: PayloadAction<DeleteCardProps>) => {
+      const { index, id } = action.payload;
+      state.board[index].items = state.board[index].items.filter((el) => el.id !== id);
+    },
+    addColumn: (state, action: PayloadAction<string>) => {
+      const column = { name: action.payload, id: nanoid(), items: [] };
+      state.board.push(column);
+    },
+    addCard: (state, action: PayloadAction<AddCardProps>) => {
+      const { index, text } = action.payload;
+
+      const card = { id: nanoid(), content: text };
+      state.board[index].items.push(card);
+    },
+    changeTitleСolumn: (state, action: PayloadAction<ChangeTitleСolumnProps>) => {
+      const { index, text } = action.payload;
+
+      state.board[index].name = text;
+    },
+    changeTitleCard: (state, action: PayloadAction<ChangeTitleCardProps>) => {
+      const { indexColumn, indexCard, text } = action.payload;
+      state.board[indexColumn].items[indexCard].content = text;
     },
   },
 });
 
-export const { getBoard, incrementByAmount } = boardSlice.actions;
+export const {
+  reorderBoard,
+  deleteСolumn,
+  deleteCard,
+  changeTitleСolumn,
+  changeTitleCard,
+  addColumn,
+  addCard,
+} = boardSlice.actions;
 
 export default boardSlice.reducer;
