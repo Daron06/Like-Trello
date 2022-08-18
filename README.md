@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# When you can see app demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://like-trello.vercel.app/
 
 ## Available Scripts
 
