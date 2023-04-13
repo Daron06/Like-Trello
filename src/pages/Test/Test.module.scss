@@ -60,14 +60,14 @@
         -webkit-transition: -webkit-transform 0.5s;
 
         transform: translateX(-120%), -webkit-translateX(-120%);
-        -webkit-transform: translateX(-120%);
+        -webkit-transform: -webkit-translateX(-120%);
 
         visibility: visible;
         opacity: 1;
         &__open {
           transition: transform 0.3s, -webkit-transform 0.3s;
           transform: translateX(0), -webkit-translateX(0);
-          -webkit-transform: translateX(0);
+          -webkit-transform: -webkit-translateX(0);
         }
       }
     }
