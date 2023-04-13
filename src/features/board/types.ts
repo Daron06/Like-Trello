@@ -1,4 +1,4 @@
-export interface BoardState {
+export type BoardState = {
   board: {
     name: string;
     items: {
@@ -7,25 +7,25 @@ export interface BoardState {
     }[];
     id: string;
   }[];
-}
+};
 
-export interface DeleteCardProps {
+export type DeleteCardProps = {
   index: number;
   id: string;
-}
+};
 
-export interface ChangeTitleСolumnProps {
+export type ChangeTitleСolumnProps = {
   index: number;
   text: string;
-}
+};
 
-export interface ChangeTitleCardProps {
+export type ChangeTitleCardProps = {
   indexColumn: number;
   indexCard: number;
   text: string;
-}
+};
 
-export interface AddCardProps {
+export type AddCardProps = {
   index: number;
   text: string;
-}
+};

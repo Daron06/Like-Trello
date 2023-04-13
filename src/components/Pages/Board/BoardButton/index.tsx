@@ -2,11 +2,11 @@ import React from 'react';
 import { Icon, IconName } from '../../../Icon';
 import styles from './BoardButton.module.scss';
 
-interface BoardButtonProps {
+type BoardButtonProps = {
   text: string;
   imgType?: IconName;
   onClick: () => void;
-}
+};
 
 export const BoardButton: React.FC<BoardButtonProps> = ({ text, imgType, onClick }) => {
   return (

@@ -7,6 +7,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addColumn, reorderBoard } from '../../features/board/boardSlice';
 import { BoardState } from '../../features/board/types';
+import { nanoid } from 'nanoid';
 
 const reorder = (list: BoardState['board'], startIndex: number, endIndex: number) => {
   const result = Array.from(list);
@@ -15,7 +16,36 @@ const reorder = (list: BoardState['board'], startIndex: number, endIndex: number
 
   return result;
 };
+const itemsFromBackend = [
+  { id: nanoid(), content: 'First task' },
+  { id: nanoid(), content: 'Second task' },
+  { id: nanoid(), content: 'Third task' },
+  { id: nanoid(), content: 'Fourth task' },
+  { id: nanoid(), content: 'Fifth task' },
+];
 
+const columnsFromBackend = [
+  {
+    name: 'Requested',
+    items: itemsFromBackend,
+    id: nanoid(),
+  },
+  {
+    name: 'To do',
+    items: [],
+    id: nanoid(),
+  },
+  {
+    name: 'In Progress',
+    items: [],
+    id: nanoid(),
+  },
+  {
+    name: 'Done',
+    items: [],
+    id: nanoid(),
+  },
+];
 export const Boards = () => {
   const columns = useAppSelector((state) => state.board.board);
   const dispatch = useAppDispatch();
