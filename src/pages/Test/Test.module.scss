@@ -19,6 +19,7 @@
     .primaryMenu {
       display: flex;
       align-items: stretch;
+      background-color: black;
 
       height: 100%;
       width: 100%;
@@ -43,6 +44,7 @@
         width: 100%;
         height: 100%;
         transition: background 500ms ease-in;
+        background: #1f1f2215;
       }
 
       .primaryMenu {

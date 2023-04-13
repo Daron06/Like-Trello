@@ -9,8 +9,9 @@ export const Test = () => {
         <button onClick={() => setOpen((prev) => !prev)}>click</button>
       </header>
       <div className={s.container}>
-        <div className={s.wrapper}>
+        <div className={open && s.wrapper}>
           <div className={open ? `${s.primaryMenu} ${s.primaryMenu__open}` : s.primaryMenu}>
+            <button onClick={() => setOpen((prev) => !prev)}>click</button>
             nav
           </div>
         </div>
