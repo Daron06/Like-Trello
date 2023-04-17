@@ -16,6 +16,18 @@
     overflow: auto;
     position: relative;
 
+    .primaryMenuWrapper {
+      width: auto;
+
+      @media (min-width: 757px) and (max-width: 1345px) {
+        transition: width 0.3s linear;
+
+        &__closed {
+          width: 0;
+        }
+      }
+    }
+
     .primaryMenu {
       display: flex;
       align-items: stretch;
@@ -27,7 +39,7 @@
 
       position: fixed;
 
-      // visibility: collapse;
+      // visibility: hidden;
       // opacity: 0;
       transform: translate(-120%);
       -webkit-transform: translate(-120%);
@@ -39,7 +51,6 @@
         -webkit-transform: translate(0);
       }
     }
-
     @media (max-width: 959px) {
       .wrapper {
         position: absolute;
@@ -93,8 +104,6 @@
         width: auto;
         border-right: 1px solid green;
       }
-    }
-    .content {
     }
   }
 }
