@@ -25,10 +25,14 @@ const phoneFormatSettings = {
     format: '8 ($2) $3-$4-$5',
   },
 };
-
+const { browser } = d.parse(navigator.userAgent);
 console.log(d.parse(navigator.userAgent), navigator);
 const { userAgent } = navigator;
-if (userAgent.includes('Edg') || userAgent.includes('YaBrowser')) {
+if (
+  userAgent.includes('Edg') ||
+  userAgent.includes('YaBrowser') ||
+  browser.family.includes('Safari')
+) {
   console.log(true);
 }
 
