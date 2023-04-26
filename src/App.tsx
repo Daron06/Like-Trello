@@ -7,6 +7,7 @@ import { Calendar } from './pages/Calendar';
 import { MainLayout } from './layouts/MainLayout';
 import { Test } from './pages/Test';
 import d from 'detect.js';
+import { detect } from 'detect-browser';
 const arr = ['89851234567', '88005555777', '84957556983', '848221234567', '84842575018'];
 
 const phoneFormatSettings = {
@@ -25,18 +26,12 @@ const phoneFormatSettings = {
     format: '8 ($2) $3-$4-$5',
   },
 };
-const { browser } = d.parse(navigator.userAgent);
-console.log(d.parse(navigator.userAgent), navigator);
-const { userAgent } = navigator;
-if (
-  userAgent.includes('Edg') ||
-  userAgent.includes('YaBrowser') ||
-  browser.family.includes('Safari')
-) {
-  console.log(true);
-}
+const { browser: b } = d.parse(navigator.userAgent);
 
 function App() {
+  const browser = detect();
+  console.log(b, browser);
+
   const maskPhoneNumber = (phone: string) =>
     phone.replace(
       /^(?:\+7|8)(\s\(\d{3}\)|\s\(\d{4}\)|\s\(\d{2}-\d{2}\))\s(\d{1,4})\s?(-)?(\d{2})-(\d{2})$/,
