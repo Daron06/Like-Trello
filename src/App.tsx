@@ -6,75 +6,31 @@ import { Boards } from './pages/Boards';
 import { Calendar } from './pages/Calendar';
 import { MainLayout } from './layouts/MainLayout';
 import { Test } from './pages/Test';
-import d from 'detect.js';
-import { detect } from 'detect-browser';
-const arr = ['89851234567', '88005555777', '84957556983', '848221234567', '84842575018'];
+import { detect, detectOS, browserName } from 'detect-browser';
 
-const phoneFormatSettings = {
-  defaultPattern: /(\+7|7|8)(\d{3})(\d{3})(\d{2})(\d{2})/g,
-  defaultFormat: '+7 ($2) $3-$4-$5',
-  '4842': {
-    pattern: /(\+7|7|8)(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/g,
-    format: '+7 ($2-$3) $4-$5-$6',
-  },
-  '4822': {
-    pattern: /(\+7|7|8)(\d{4})(\d{3})(\d{2})(\d{2})/g,
-    format: null,
-  },
-  '800': {
-    pattern: null,
-    format: '8 ($2) $3-$4-$5',
-  },
+const browser = detect();
+
+console.log(detectOS(navigator.userAgent), browserName(navigator.userAgent));
+
+const checkBrowser = () => {
+  switch (browser && browser.name) {
+    case 'yandexbrowser':
+    case 'safari':
+    case 'edge':
+    case 'edge-chromium':
+      return true;
+    default:
+      return false;
+  }
 };
-const { browser: b } = d.parse(navigator.userAgent);
 
 function App() {
-  const browser = detect();
-  console.log(b, browser);
-
-  const maskPhoneNumber = (phone: string) =>
-    phone.replace(
-      /^(?:\+7|8)(\s\(\d{3}\)|\s\(\d{4}\)|\s\(\d{2}-\d{2}\))\s(\d{1,4})\s?(-)?(\d{2})-(\d{2})$/,
-      (match, p1, p2, p3, _, p5) =>
-        (match.startsWith('8') && p1.includes('800') ? '8' : '+7') +
-        p1 +
-        ' ' +
-        '*'.repeat(p2.length) +
-        (p3 ? '-' : '') +
-        '**-' +
-        p5
-    );
-
-  const formatterPhoneNumber = (phone: string, isMasked?: boolean): string => {
-    if (phone.length < 8) {
-      return phone;
-    }
-
-    if (phone.startsWith('+')) {
-      phone = phone.slice(1);
-    }
-
-    const setting =
-      phoneFormatSettings[phone.slice(1, 4) as keyof object] ||
-      phoneFormatSettings[phone.slice(1, 5) as keyof object] ||
-      phoneFormatSettings;
-    const mask = setting['format'] || phoneFormatSettings.defaultFormat;
-    const pattern = setting['pattern'] || phoneFormatSettings.defaultPattern;
-
-    const phoneNumber = phone.replace(pattern, mask);
-
-    if (isMasked) {
-      return maskPhoneNumber(phoneNumber);
-    }
-
-    return phoneNumber;
-  };
-
-  // console.log(formatterPhoneNumber('+79851234567', true));
-  // console.log(formatterPhoneNumber('88005555777'));
-  // console.log(formatterPhoneNumber('+84842575018'));
-
-  console.log();
+  console.log(
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|IOS/i.test(
+      detectOS(navigator.userAgent) || ''
+    ),
+    navigator.userAgent
+  );
 
   return (
     <div
